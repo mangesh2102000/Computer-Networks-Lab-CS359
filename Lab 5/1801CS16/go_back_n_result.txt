@@ -1,0 +1,270 @@
+###result for in order transfer of messages go back n###
+
+**client side
+
+$ ./client_gbn 4 
+[+]Client socket created successfully.
+Window Size is 4, Use sequence numbers starting from 0
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+Manchester City face Manchester United in 
+0
+the 185th Manchester derby on Sunday in a game 
+1
+that, less than two months ago, was shaping up
+2
+to be a potential Premier League title decider.
+3
+ACK 3
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+United climbed to the top of the table with a 1-0 
+4
+win at Burnley on Jan. 12, moving seven points clear
+5
+of City (who had two games in hand) to raise hopes of
+6
+a first title at Old Trafford since 2013. But when United
+7
+ACK 7
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+travel to the Etihad on Sunday, Ole Gunnar Solskjaer's
+8
+team will find themselves 14 points behind Pep 
+9
+Guardiola's men following a 21-point swing in just seven weeks.
+10
+Heading into the weekend, City and United are the top two
+11
+ACK 11
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+Leicester can climb into second with a win
+12
+at Brighton on Saturday
+13
+so how close are the two teams
+14
+in terms of quality?
+15
+ACK 15
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+ESPN tests the strength
+16
+of the squads by
+17
+selecting a combined XI
+18
+from the two teams.
+19
+ACK 19
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+exit
+[+]Closing the connection.
+
+
+
+
+
+**server side
+
+$ ./server_gbn 4 
+[+]Server socket created successfully
+[+]Binding successfull.
+Received Message from Client : Manchester City face Manchester United in 
+Sequence Number: 0
+Received Message from Client : the 185th Manchester derby on Sunday in a game 
+Sequence Number: 1
+Received Message from Client : that, less than two months ago, was shaping up
+Sequence Number: 2
+Received Message from Client : to be a potential Premier League title decider.
+Sequence Number: 3
+Received Message from Client : United climbed to the top of the table with a 1-0 
+Sequence Number: 4
+Received Message from Client : win at Burnley on Jan. 12, moving seven points clear
+Sequence Number: 5
+Received Message from Client : of City (who had two games in hand) to raise hopes of
+Sequence Number: 6
+Received Message from Client : a first title at Old Trafford since 2013. But when United
+Sequence Number: 7
+Received Message from Client : travel to the Etihad on Sunday, Ole Gunnar Solskjaer's
+Sequence Number: 8
+Received Message from Client : team will find themselves 14 points behind Pep 
+Sequence Number: 9
+Received Message from Client : Guardiola's men following a 21-point swing in just seven weeks.
+Sequence Number: 10
+Received Message from Client : Heading into the weekend, City and United are the top two
+Sequence Number: 11
+Received Message from Client : Leicester can climb into second with a win
+Sequence Number: 12
+Received Message from Client : at Brighton on Saturday
+Sequence Number: 13
+Received Message from Client : so how close are the two teams
+Sequence Number: 14
+Received Message from Client : in terms of quality?
+Sequence Number: 15
+Received Message from Client : ESPN tests the strength
+Sequence Number: 16
+Received Message from Client : of the squads by
+Sequence Number: 17
+Received Message from Client : selecting a combined XI
+Sequence Number: 18
+Received Message from Client : from the two teams.
+Sequence Number: 19
+
+
+###result of out of order transfer of messages go back n###
+
+**client side
+
+$ ./client_gbn 4
+[+]Client socket created successfully.
+Window Size is 4, Use sequence numbers starting from 0
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+Manchester City face Manchester United in 
+0
+the 185th Manchester derby on Sunday in a game 
+1
+that, less than two months ago, was shaping up
+2
+to be a potential Premier League title decider.
+3
+ACK 3
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+United climbed to the top of the table with a 1-0 
+4
+of City (who had two games in hand) to raise hopes of
+6
+a first title at Old Trafford since 2013. But when United
+7
+travel to the Etihad on Sunday, Ole Gunnar Solskjaer's
+8
+NAK 5
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+win at Burnley on Jan. 12, moving seven points clear
+5
+of City (who had two games in hand) to raise hopes of
+6
+a first title at Old Trafford since 2013. But when United
+7
+travel to the Etihad on Sunday, Ole Gunnar Solskjaer's
+8
+ACK 8
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+team will find themselves 14 points behind Pep 
+9
+Guardiola's men following a 21-point swing in just seven weeks.
+10
+Heading into the weekend, City and United are the top two
+11
+at Brighton on Saturday
+13
+NAK 12
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+Leicester can climb into second with a win
+12
+at Brighton on Saturday
+13
+so how close are the two teams
+14
+in terms of quality?
+15
+ACK 15
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+ESPN tests the strength
+16
+of the squads by
+17
+selecting a combined XI
+18
+from the two teams.
+19
+ACK 19
+******************************************
+******************************************
+Enter current set of messages (count = (4)WINDOW_SIZE) to send ('exit' to quit):
+(Format for each msg : line1 = data_msg, line2 = seq_num)
+exit
+[+]Closing the connection.
+
+
+**server side
+
+$ ./server_gbn 4 
+[+]Server socket created successfully
+[+]Binding successfull.
+Received Message from Client : Manchester City face Manchester United in 
+Sequence Number: 0
+Received Message from Client : the 185th Manchester derby on Sunday in a game 
+Sequence Number: 1
+Received Message from Client : that, less than two months ago, was shaping up
+Sequence Number: 2
+Received Message from Client : to be a potential Premier League title decider.
+Sequence Number: 3
+Received Message from Client : United climbed to the top of the table with a 1-0 
+Sequence Number: 4
+Message Discarded, (Sequence Number Out of Order) : Expected = 5, Found = 6
+Message Discarded, (Sequence Number Out of Order) : Expected = 5, Found = 7
+Message Discarded, (Sequence Number Out of Order) : Expected = 5, Found = 8
+Received Message from Client : win at Burnley on Jan. 12, moving seven points clear
+Sequence Number: 5
+Received Message from Client : of City (who had two games in hand) to raise hopes of
+Sequence Number: 6
+Received Message from Client : a first title at Old Trafford since 2013. But when United
+Sequence Number: 7
+Received Message from Client : travel to the Etihad on Sunday, Ole Gunnar Solskjaer's
+Sequence Number: 8
+Received Message from Client : team will find themselves 14 points behind Pep 
+Sequence Number: 9
+Received Message from Client : Guardiola's men following a 21-point swing in just seven weeks.
+Sequence Number: 10
+Received Message from Client : Heading into the weekend, City and United are the top two
+Sequence Number: 11
+Message Discarded, (Sequence Number Out of Order) : Expected = 12, Found = 13
+Received Message from Client : Leicester can climb into second with a win
+Sequence Number: 12
+Received Message from Client : at Brighton on Saturday
+Sequence Number: 13
+Received Message from Client : so how close are the two teams
+Sequence Number: 14
+Received Message from Client : in terms of quality?
+Sequence Number: 15
+Received Message from Client : ESPN tests the strength
+Sequence Number: 16
+Received Message from Client : of the squads by
+Sequence Number: 17
+Received Message from Client : selecting a combined XI
+Sequence Number: 18
+Received Message from Client : from the two teams.
+Sequence Number: 19
